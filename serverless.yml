@@ -1,0 +1,17 @@
+service: zectr-export
+frameworkVersion: "3"
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: dev
+  region: us-east-1
+functions:
+  web-resourceAPI:
+    handler: ./web-resources.handler
+    events:
+      - http:
+          path: /index.html
+          method: get
+plugins:
+  - serverless-offline
+  - serverless-dotenv-plugin
