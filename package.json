@@ -3,11 +3,6 @@
   "version": "1.0.0",
   "description": "*[summary of the application]*",
   "main": "handler.js",
-  "scripts": {
-    "start": "serverless offline start",
-    "deploy": "sls deploy -v",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stefan-totino/zectr-export.git"
