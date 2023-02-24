@@ -1,3 +1,6 @@
+#
+# https://www.serverless.com/framework/docs/providers/aws/guide/events
+#
 service: zectr-export
 frameworkVersion: "3"
 provider:
@@ -9,9 +12,9 @@ functions:
   web-resourceAPI:
     handler: ./web-resources.handler
     events:
-      - http:
-          path: /index.html
-          method: get
+      - httpApi: GET /index.html
+      - httpApi: GET /buckets
+      - httpApi: GET /slides
 plugins:
   - serverless-offline
   - serverless-dotenv-plugin
