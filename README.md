@@ -4,6 +4,10 @@ download all of the dependencies (seen in last section) and follow their install
 
 after successfully installing dependencies and creating a clone of this repository, navigate to the root directory using a terminal application.
 
+https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html
+
+`aws configure`
+
 ## [i] *local startup*
 
 you may have to run the following command **one time only**:
@@ -16,11 +20,11 @@ you may have to run the following command **one time only**:
 
 `serverless deploy`
 
-## [iv] *runtime commands*
+## [iii] *runtime commands*
 
 
 
-### [iv] *dependencies*
+## [iv] *dependencies*
 
 https://www.npmjs.com/package/serverless
 
