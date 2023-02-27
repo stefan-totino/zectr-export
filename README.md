@@ -2,21 +2,23 @@
 
 ## *local env*
 
-ask an admin to provide you with a copy of the AWS access keys that are required to run any bit of the software that utilizes the public cloud. Save these in safe and local location, they will be used shortly.
-
 download all of the dependencies (seen in last section) and follow their installation instructions. 
 
 create a clone of this repository using the git tools and techniques of your choice.
 
-have the admin's AWS access keys ready, anf if you didn't already do so while installing the AWS SAM CLI, run the following command: 
+if you didn't already do so while installing the AWS SAM CLI, run the following command: 
 
-`aws configure`
+`aws configure` 
 
-this command will create a very minimal AWS *profile* locally on your machine, for more information on what the profile entails, the local files it creates, etc.. see [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html)
+[aws configure cmd --help](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html#cli-configure-quickstart-config)
 
-#### *note*
+## *cloud env*
 
-creating and managing your own AWS environment may be the better choice for you, that being said, additional setup will be required. to learn how to build the environment as we did ours see [here]().
+1. pre-configured aws env.
+2. roll your own aws env. 
+3. run completely offline
+
+
 
 ## [i] *local startup*
 
