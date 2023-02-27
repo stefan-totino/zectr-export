@@ -14,7 +14,7 @@ functions:
     events:
       - httpApi: GET /index.html
       - httpApi: GET /buckets
-      - httpApi: GET /slides
+      - httpApi: POST /slides
 plugins:
   - serverless-offline
   - serverless-dotenv-plugin
