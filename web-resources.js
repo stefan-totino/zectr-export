@@ -27,6 +27,9 @@ const path = require('path');
 const s3 = new AWS.S3();
 const app = express();
 
+// TODO: this is for dev only, i am not going to allow the app to be configured to switch on this in prod. the best solution will be chosen
+const pptxWriteOpt = 'write';
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -75,16 +78,38 @@ app.post('/slides', (req, res) => {
     let slide = pptx.addSlide();
     let textboxText = 'Hello World from ZECTR via PptxGenJS';
     let textboxOpts = { x: 1, y: 1, color: '363636' };
-    let fileName = 'flat_file_empty_pres.pptx';
+    let flatFileName = 'flat_file_empty_pres.pptx';
     // TODO: get this from list buckets result
     let bucketName = 'zectr-io-build';
 
     slide.addText(textboxText, textboxOpts);
-    pptx.writeFile({ fileName: fileName })
-        .then(fileName => {
-            uploadS3(bucketName, fileName);
-            fs.unlink(fileName, (errCallback) => { });
-        });
+
+    switch (pptxWriteOpt) {
+        case ('writeFile'):
+            pptx.writeFile({ fileName: flatFileName })
+                .then(rslt => {
+                    uploadS3(bucketName, rslt);
+                    fs.unlink(rslt, (errCllbck) => { });
+                });
+            break;
+        case ('write'):
+            pptx.write("base64")
+                .catch((err) => {
+                    throw new Error(err);
+                })
+                .then((data) => {
+                    console.log(`BASE64 TEST: First 100 chars of 'data':\n`);
+                    console.log(data.substring(0, 99));
+                })
+                .catch((err) => {
+                    console.log(`ERROR: ${err}`);
+                });
+            break;
+        case ('stream'):
+        default:
+            console.log(`unsupported pptxgenJS output file format: ${pptxWriteOpt}`);
+    }
+
     res.json({ requestBody: req.body })
 })
 
