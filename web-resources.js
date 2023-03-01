@@ -3,6 +3,7 @@
 /*
     https://expressjs.com/
     https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/s3-example-creating-buckets.html#s3-example-creating-buckets-upload-file
+    https://gitbrent.github.io/PptxGenJS/docs/quick-start/
 */
 
 /* 
@@ -11,6 +12,7 @@ TODO:
     accept multiple commands over HTTP. database?
     begin to encode dad's language and business logic. error handling (result object)
     RUST integration. JWT Auth
+    send raw file from javascript to s3 (i.e. stream or likes: eliminate dependency on file system temp directory)
 */
 
 const serverless = require('serverless-http');
