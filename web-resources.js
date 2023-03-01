@@ -30,8 +30,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// TODO: console notifications need to be rolled into some kind of result object
 function uploadS3(bucketName, file) {
-    // TODO: console notifications need to be rolled into some kind of result object
     let uploadParams = { Bucket: bucketName, Key: '', Body: '' };
     let fileStream = fs.createReadStream(file);
 
@@ -42,9 +42,9 @@ function uploadS3(bucketName, file) {
     uploadParams.Key = path.basename(file);
     s3.upload(uploadParams, function (err, data) {
         if (err) {
-            console.log("Error", err);
+            console.log('Error', err);
         } if (data) {
-            console.log("Upload Success", data.Location);
+            console.log('Upload Success', data.Location);
         }
     });
 }
@@ -54,6 +54,7 @@ app.get('/index.html', async (req, res) => {
     res.send(html)
 })
 
+// TODO: work on the error return strategy
 app.get('/buckets', async (req, res) => {
     let listBucketsResult = {};
     s3.listBuckets(function (err, data) {
@@ -70,13 +71,20 @@ app.get('/buckets', async (req, res) => {
 })
 
 app.post('/slides', (req, res) => {
-    let pres = new pptxgen();
-    let slide = pres.addSlide();
-    let textboxText = "Hello World from PptxGenJS!";
-    let textboxOpts = { x: 1, y: 1, color: "363636" };
+    let pptx = new pptxgen();
+    let slide = pptx.addSlide();
+    let textboxText = 'Hello World from ZECTR via PptxGenJS';
+    let textboxOpts = { x: 1, y: 1, color: '363636' };
+    let fileName = 'flat_file_empty_pres.pptx';
+    // TODO: get this from list buckets result
+    let bucketName = 'zectr-io-build';
+
     slide.addText(textboxText, textboxOpts);
-    pres.writeFile();
-    uploadS3("zectr-io-build", "Presentation.pptx");
+    pptx.writeFile({ fileName: fileName })
+        .then(fileName => {
+            uploadS3(bucketName, fileName);
+            fs.unlink(fileName, (errCallback) => { });
+        });
     res.json({ requestBody: req.body })
 })
 
