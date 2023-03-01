@@ -1,8 +1,10 @@
 # zectr-export
 
+**WIP**
+
 ## *local env*
 
-download all of the dependencies (seen in last section) and follow their installation instructions. 
+download all of the dependencies (seen in the last section) and follow their installation instructions. 
 
 create a clone of this repository using the git tools and techniques of your choice.
 
@@ -14,11 +16,11 @@ if you didn't already do so while installing the AWS SAM CLI, run the following 
 
 ## *cloud env*
 
-1. pre-configured aws env.
-2. roll your own aws env. 
+one of the following is a possibility given the developer's preferences:
+
+1. pre-configured AWSenv.
+2. roll-your-own AWS env
 3. run completely offline
-
-
 
 ## [i] *local startup*
 
@@ -34,7 +36,7 @@ you may have to run the following command **one time only**:
 
 ## [iii] *runtime commands*
 
-
+TODO
 
 ## *dependencies*
 
