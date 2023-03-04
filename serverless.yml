@@ -9,12 +9,18 @@ provider:
   stage: dev
   region: us-east-1
 functions:
-  web-resourceAPI:
-    handler: ./web-resources.handler
+  indexAPI:
+    handler: ./controllers/index-controller.handler
     events:
       - httpApi: GET /index.html
-      - httpApi: GET /buckets
+  slidesAPI:
+    handler: ./controllers/slides-controller.handler
+    events:
       - httpApi: POST /slides
+  appAPI:
+    handler: ./app.handler
+    events:
+      - httpApi: GET /buckets
 plugins:
   - serverless-offline
   - serverless-dotenv-plugin
