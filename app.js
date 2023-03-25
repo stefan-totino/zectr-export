@@ -10,7 +10,6 @@ TODO:
     accept multiple commands over HTTP. database?
     begin to encode dad's language and business logic. error handling (result object)
     RUST integration. JWT Auth
-    send raw file from javascript to s3 (i.e. stream or likes: eliminate dependency on file system temp directory)
 */
 
 'use strict'
