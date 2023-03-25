@@ -17,8 +17,8 @@ functions:
     handler: ./controllers/slides-controller.handler
     events:
       - httpApi: POST /slides
-  appAPI:
-    handler: ./app.handler
+  bucketsAPI:
+    handler: ./controllers/buckets-controller.handler
     events:
       - httpApi: GET /buckets
 plugins:
